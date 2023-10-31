@@ -1,24 +1,41 @@
 #include <stdio.h>
 #include <stdlib.h>
+#include <ctype.h>
+#include <string.h>
+
 /**
- * main - This function multiplies two numbers and prints the result
- * @argc: argument count must be exactly two numbers
- * @argv: argument vector
- * Return: 0 on success, 1 on failure
+ * main - Program that adds positive numbers
+ * @argc: This is the argument count
+ * @argv: This is the argument vector
+ *
+ * Return: 0;
  */
 int main(int argc, char *argv[])
 {
-	int res1, res2;
+	int sum = 0, i;
 
-	res1 = res2 = 0;
-	if (argc == 3)
+	if (argc > 1)
 	{
-		res1 = atoi(argv[1]);
-		res2 = atoi(argv[2]);
-		printf("%d\n", res1 * res2);
-		return (0);
+		for (i = 1; i < argc; i++)
+		{
+			int b;
+			char *str;
+
+			str = argv[i];
+			for (b = 0; str[b] != '\0'; b++)
+			{
+				if (str[b] < 48 || str[b] > 57)
+				{
+					printf("Error\n");
+					return (1);
+				}
+			}
+		}
 	}
-	else
-		printf("Error\n");
-	return (1);
+	for (i = 1; i < argc; i++)
+	{
+		sum += atoi(argv[i]);
+	}
+	printf("%d\n", sum);
+	return (0);
 }
