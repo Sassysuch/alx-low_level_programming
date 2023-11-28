@@ -1,41 +1,26 @@
-#include <stdio.h>
-#include <stdlib.h>
-#include <string.h>
 #include "main.h"
+
 /**
- * unsigned long int : list of long unsigned
- * @b : characters b
- * Return : 0
+ * binary_to_uint - This converts a binary number to unsigned int
+ * @b: The string containing the binary number
+ *
+ * Return: converted number
  */
 
-unsigned int binary_to_uint(const char *b) {
-    unsigned int num = 0;
-    int i = 0;
+unsigned int binary_to_uint(const char *b)
+{
+	int i;
+	unsigned int dec_val = 0;
 
-    if (b == NULL) {
-        return 0;
-    }
+	if (!b)
+		return (0);
 
-    while (b[i] != '\0') {
-        if (b[i] != '0' && b[i] != '1') {
-            return 0;
-        }
-        i++;
-    }
+	for (i = 0; b[i]; i++)
+	{
+		if (b[i] < '0' || b[i] > '1')
+			return (0);
+		dec_val = 2 * dec_val + (b[i] - '0');
+	}
 
-    i = 0;
-    while (b[i] != '\0') {
-        num = num * 2 + (b[i] - '0');
-        i++;
-    }
-
-    return num;
-}
-
-int main() {
-    char binary[] = "1011";
-    unsigned int decimal = binary_to_uint(binary);
-    printf("Decimal: %u\n", decimal);
-
-    return 0;
+	return (dec_val);
 }
